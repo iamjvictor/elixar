@@ -12,7 +12,7 @@ defmodule ContagemElementos do
       iex> ContagemElementos.run([1, 2, 3])
       3
   """
-  @spec run(list) :: integer
+
   @spec run(list) :: integer
   def run(lista), do: count_elements(lista, 0)
 
