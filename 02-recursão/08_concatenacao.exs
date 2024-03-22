@@ -1,3 +1,5 @@
+ExUnit.start()
+
 defmodule ConcatenacaoListas do
   @doc """
   Concatena duas listas em uma única lista.
@@ -7,10 +9,9 @@ defmodule ConcatenacaoListas do
       iex> ConcatenacaoListas.run([1, 2, 3], [4, 5, 6])
       [1, 2, 3, 4, 5, 6]
   """
+
   @spec run(list, list) :: list
-  def run(lista1, lista2) do
-    # FIXME
-  end
+  def run(lista1, lista2), do: lista1 ++ lista2
 end
 
 defmodule ConcatenacaoListasTest do

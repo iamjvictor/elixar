@@ -1,3 +1,5 @@
+ExUnit.start()
+
 defmodule OrdenacaoLista do
   @doc """
   Ordena uma lista de inteiros.
@@ -9,7 +11,7 @@ defmodule OrdenacaoLista do
   """
   @spec run(list(integer)) :: list(integer)
   def run(lista) do
-    # FIXME
+    Enum.sort(lista)
   end
 end
 

@@ -14,8 +14,20 @@ defmodule Fibonnacci do
   de um número da sequência somado ao seu antecessor.
   """
   @spec run(integer) :: list(integer)
-  def run(n) do
-    # FIXME
+  def run(n) when n >= 0 do
+    gerar_fibonnacci(n, [], 1, 1)
+  end
+
+  defp gerar_fibonnacci(n, resultado, a, b) when n > 0 do
+    if length(resultado) == n do
+      Enum.reverse(resultado)
+    else
+      gerar_fibonnacci(n, [a | resultado], b, a + b)
+    end
+  end
+
+  defp gerar_fibonnacci(0, resultado, _, _) do
+    Enum.reverse(resultado)
   end
 end
 

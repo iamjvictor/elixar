@@ -18,9 +18,20 @@ defmodule BuscaBinaria do
     Se for menor, repita a busca na metade inferior. Se for maior, na metade superior.
   """
   @spec run(list(integer), integer) :: boolean
-  def run(xs, x) do
-    # FIXME
-    :error
+  @spec run(list(integer), integer) :: boolean
+  def run([], _), do: false
+  def run([mid | _], mid), do: true
+  def run(list, x) do
+    mid = div(length(list), 2)
+    case Enum.at(list, mid) do
+      nil -> false
+      elem ->
+        cond do
+          x == elem -> true
+          x < elem -> run(Enum.slice(list, 0, mid), x)
+          true -> run(Enum.slice(list, mid + 1, length(list)), x)
+        end
+    end
   end
 end
 

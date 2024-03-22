@@ -6,8 +6,13 @@ defmodule SomaLista do
   todos os elementos de uma lista.
   """
   @spec run(list(integer)) :: integer
-  def run(xs) do
-    # FIXME
+  def run(xs) when is_list(xs) do
+    soma_recursiva(xs)
+  end
+
+  defp soma_recursiva([], acc \\ 0), do: acc
+  defp soma_recursiva([x | xs], acc) do
+    soma_recursiva(xs, acc + x)
   end
 end
 

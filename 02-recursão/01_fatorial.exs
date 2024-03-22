@@ -11,8 +11,12 @@ defmodule Fatorial do
   com o resultado do fatorial de seu antecessor.
   """
   @spec run(integer) :: integer
-  def run(n) do
-    # FIXME
+  def run(n) when n >= 0 do
+    if n == 0 do
+      1
+    else
+      n * run(n - 1)
+    end
   end
 end
 
