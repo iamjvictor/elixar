@@ -3,24 +3,17 @@ ExUnit.start()
 defmodule Subconjuntos do
   @doc """
   Retorna todos os subconjuntos possíveis de uma lista.
-
-  ## Dicas
-  - Uma abordagem recursiva pode considerar dois casos para cada elemento: incluindo ou não o elemento no subconjunto.
-  - Lembre-se de que o conjunto vazio é um subconjunto de qualquer conjunto.
-
-  ## Exemplos
-
-      iex> Subconjuntos.run([1, 2])
-      [[], [1], [2], [1, 2]]
-
-      iex> Subconjuntos.run([])
-      [[]]
   """
   @spec run(list(any)) :: list(list(any))
-  def run(lista) do
-    # FIXME
+  def run([]), do: [[]]
+
+  def run([head | tail]) do
+    subconjuntos_sem_head = run(tail)
+    subconjuntos_com_head = for subset <- subconjuntos_sem_head, do: [head | subset]
+    subconjuntos_sem_head ++ subconjuntos_com_head
   end
 end
+
 
 defmodule SubconjuntosTest do
   use ExUnit.Case, async: true

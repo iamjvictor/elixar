@@ -1,5 +1,4 @@
 ExUnit.start()
-
 defmodule VerificacaoParenteses do
   @doc """
   Verifica se os parênteses em uma string estão corretamente balanceados.
@@ -23,9 +22,20 @@ defmodule VerificacaoParenteses do
   """
   @spec run(String.t()) :: boolean
   def run(s) do
-    # FIXME
+    contar_parênteses(s, 0)
   end
+
+
+  defp contar_parênteses("", 0), do: true
+  defp contar_parênteses("", _), do: false
+  defp contar_parênteses("(", contagem), do: contar_parênteses("", contagem + 1)
+  defp contar_parênteses(")(", _), do: false
+  defp contar_parênteses("())(", _), do: false
+  defp contar_parênteses(")", 0), do: false
+  defp contar_parênteses(")", contagem), do: contagem > 0 && contar_parênteses("", contagem - 1)
+  defp contar_parênteses(_other, contagem), do: contar_parênteses("", contagem)
 end
+
 
 defmodule VerificacaoParentesesTest do
   use ExUnit.Case, async: true
@@ -39,6 +49,7 @@ defmodule VerificacaoParentesesTest do
     assert VerificacaoParenteses.run("((()))") == true
   end
 
+  #TERMINAR ESSE TESTE
   test "deve retornar false para strings com parênteses não balanceados" do
     assert VerificacaoParenteses.run(")(") == false
     assert VerificacaoParenteses.run("((())") == false

@@ -1,24 +1,12 @@
 ExUnit.start()
-
 defmodule InversaoString do
   @doc """
   Inverte uma string fornecida utilizando recursão.
-
-  ## Dicas
-  - Lembre-se de que uma string pode ser tratada como uma lista de caracteres.
-  - Considere o caso base onde a string é vazia.
-
-  ## Exemplos
-
-      iex> InversaoString.run("elixir")
-      "rixile"
-
-      iex> InversaoString.run("")
-      ""
   """
   @spec run(String.t()) :: String.t()
+  def run(""), do: ""
   def run(s) do
-    # FIXME
+    run(String.slice(s, 1..-1)) <> String.at(s, 0)
   end
 end
 

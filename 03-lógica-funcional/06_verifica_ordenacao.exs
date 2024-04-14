@@ -3,24 +3,16 @@ ExUnit.start()
 defmodule ListaOrdenada do
   @doc """
   Verifica se uma lista de números inteiros está ordenada em ordem crescente.
-
-  ## Dicas
-  - Lembre-se de considerar o caso base onde a lista tem um ou nenhum elemento.
-  - Compare o primeiro elemento com o segundo e prossiga recursivamente.
-
-  ## Exemplos
-
-      iex> ListaOrdenada.run([1, 2, 3, 4, 5])
-      true
-
-      iex> ListaOrdenada.run([1, 3, 2])
-      false
   """
   @spec run(list(integer)) :: boolean
-  def run(nums) do
-    # FIXME
+  def run([]), do: true
+  def run([_]), do: true  
+  def run([head | tail]) when head <= hd(tail) do
+    run(tail)
   end
+  def run(_), do: false  # Se não correspondeu aos padrões anteriores, a lista não está ordenada
 end
+
 
 defmodule ListaOrdenadaTest do
   use ExUnit.Case, async: true

@@ -1,27 +1,22 @@
-EXUnit.start()
+ExUnit.start()
 
 defmodule AtualizarMapaAninhado do
-  @doc """
-  Atualiza o valor de uma chave aninhada dentro de um mapa.
-
-  ## Dicas
-  - Você pode precisar usar recursão para navegar pelo mapa aninhado.
-  - Considere como acessar e modificar valores em mapas aninhados.
-
-  ## Exemplos
-
-      iex> mapa = %{a: %{b: %{c: 1}}}
-      iex> AtualizarMapaAninhado.run(mapa, [:a, :b, :c], 2)
-      %{a: %{b: %{c: 2}}}
-
-      iex> AtualizarMapaAninhado.run(%{}, [:x, :y], 10)
-      %{x: %{y: 10}}
-  """
+  
   @spec run(map(), list(atom()), any()) :: map()
-  def run(mapa, caminho, valor) do
-    # FIXME
+  def run(mapa, [], valor), do: valor
+
+  def run(mapa, [chave | restante], valor) do
+    submapa_atualizado =
+      case mapa[chave] do
+        nil -> run(%{}, restante, valor)
+        submapa -> run(submapa, restante, valor)
+      end
+
+    Map.put(mapa, chave, submapa_atualizado)
   end
 end
+
+
 
 defmodule AtualizarMapaAninhadoTest do
   use ExUnit.Case, async: true

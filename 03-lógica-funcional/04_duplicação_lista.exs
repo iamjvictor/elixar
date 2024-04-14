@@ -3,23 +3,14 @@ ExUnit.start()
 defmodule DuplicacaoLista do
   @doc """
   Duplica cada elemento de uma lista fornecida.
-
-  ## Dicas
-  - Utilize recursão para percorrer a lista e adicionar cada elemento duas vezes na nova lista.
-
-  ## Exemplos
-
-      iex> DuplicacaoLista.run([1, 2, 3])
-      [1, 1, 2, 2, 3, 3]
-
-      iex> DuplicacaoLista.run([])
-      []
   """
   @spec run(list(any)) :: list(any)
-  def run(lista) do
-    # FIXME
+  def run([]), do: []
+  def run([head | tail]) do
+    [head, head] ++ run(tail)
   end
 end
+
 
 defmodule DuplicacaoListaTest do
   use ExUnit.Case, async: true
