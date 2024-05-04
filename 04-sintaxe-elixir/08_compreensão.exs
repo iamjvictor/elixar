@@ -14,8 +14,11 @@ defmodule CompreensaoLista do
   """
   @spec run(list(integer)) :: list(integer)
   def run(nums) do
-    # FIXME
+    for num <- nums, par(num), do: num * 4
   end
+
+  defp par(num) when rem(num, 2) == 0, do: true
+  defp par(_), do: false
 end
 
 defmodule CompreensaoListaTest do

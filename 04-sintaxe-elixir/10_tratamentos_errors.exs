@@ -1,5 +1,4 @@
 ExUnit.start()
-
 defmodule TratamentoErros do
   @doc """
   Usa try/rescue para tratar erros ao tentar acessar uma chave em um mapa.
@@ -13,10 +12,17 @@ defmodule TratamentoErros do
       "Chave não encontrada"
   """
   @spec run(map, atom) :: String.t()
-  def run(mapa, chave) do
-    # FIXME
+  def run(mapa, _chave) do
+    try do
+      _key = mapa.chave
+    rescue
+      KeyError ->
+        "Chave não encontrada"
+    end
   end
 end
+
+
 
 defmodule TratamentoErrosTest do
   use ExUnit.Case, async: true

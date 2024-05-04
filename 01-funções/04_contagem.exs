@@ -12,14 +12,16 @@ defmodule Contagem do
   no momento da execução. Caso saiba usar recursão, também é permitido.
 
   ## Dicas
-  - [`for/1`](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#for/1)
-  - [`Map`](https://hexdocs.pm/elixir/Map.html)
+  - [`String.split/2`](https://hexdocs.pm/elixir/String.html#split/2)
+  - [`Enum.count/2`](https://hexdocs.pm/elixir/Enum.html#count/2)
   """
   @spec run(String.t(), String.t()) :: integer
   def run(frase, palavra) do
-    # FIXME
+    palavras = frase |> String.downcase() |> String.split(~r/\W+/)
+    Enum.count(palavras, fn(word) -> word == palavra end)
   end
 end
+
 
 defmodule ContagemTest do
   use ExUnit.Case, async: true

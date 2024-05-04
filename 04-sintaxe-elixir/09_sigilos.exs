@@ -14,7 +14,7 @@ defmodule UsoSigilos do
   """
   @spec run(String.t()) :: list(String.t())
   def run(texto) do
-    # FIXME
+    Regex.scan(~r/\d+/, texto) |> Enum.map(&hd(&1))
   end
 end
 

@@ -12,11 +12,14 @@ defmodule UsoModuleAttributes do
       iex> UsoModuleAttributes.run()
       "O valor da constante é: 42"
   """
+  @constante 42
+
   @spec run() :: String.t()
   def run() do
-    # FIXME
+    "O valor da constante é: #{@constante}"
   end
 end
+
 
 defmodule UsoModuleAttributesTest do
   use ExUnit.Case, async: true

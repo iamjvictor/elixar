@@ -1,5 +1,11 @@
 ExUnit.start()
 
+defmodule ModuloComNomeLongo do
+  def funcao_longa do
+    :ok
+  end
+end
+
 defmodule UsoAlias do
   @doc """
   Demonstra o uso de `alias` para simplificar a chamada de uma função de um módulo longo.
@@ -14,7 +20,16 @@ defmodule UsoAlias do
   """
   @spec run() :: atom
   def run() do
-    # FIXME
+    alias ModuloComNomeLongo, as: Modulo
+    Modulo.funcao_longa()
+  end
+end
+
+defmodule UsoAliasTest do
+  use ExUnit.Case, async: true
+
+  test "demonstra o uso de alias" do
+    assert UsoAlias.run() == :ok
   end
 end
 

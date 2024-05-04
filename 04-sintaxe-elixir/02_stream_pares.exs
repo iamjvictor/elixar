@@ -14,9 +14,11 @@ defmodule StreamNumerosPares do
   """
   @spec run() :: list(integer)
   def run() do
-    # FIXME
+    Stream.iterate(2, &(&1 + 2))
+    |> Enum.take(5)
   end
 end
+
 
 defmodule StreamNumerosParesTest do
   use ExUnit.Case, async: true

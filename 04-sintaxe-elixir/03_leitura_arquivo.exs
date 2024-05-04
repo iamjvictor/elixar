@@ -15,14 +15,18 @@ defmodule LeituraArquivoMaiusculas do
   """
   @spec run(String.t()) :: String.t() | :error
   def run(path) do
-    # FIXME
+    case File.read(path) do
+      {:ok, content} -> String.upcase(content)
+      {:error, reason} -> {:error, reason}
+    end
   end
 end
+
 
 defmodule LeituraArquivoMaiusculasTest do
   use ExUnit.Case, async: true
 
   test "retorna o conteúdo do arquivo em maiúsculas" do
-    assert LeituraArquivoMaiusculas.run("caminho/do/arquivo.txt") == "CONTEÚDO DE TESTE"
+    assert LeituraArquivoMaiusculas.run("sup/Texto.txt") == "FLAMENGO É O MAIOR !"
   end
 end

@@ -5,16 +5,22 @@ defmodule Soma do
   A função de soma deve receber dois números inteiros
   e retornar o resultado da soma entre esses dois números.
 
-  Essa funçåo não deve aceitar nenhum outro tipo de dado
+  Essa função não deve aceitar nenhum outro tipo de dado
   a não ser números inteiros. Tome cuidado com valores nulos.
 
   ## Dicas
   - [`Kernel.+/2`](https://hexdocs.pm/elixir/Kernel.html#+/2)
   """
   @spec run(integer, integer) :: integer | :error
-  def run(a, b) do
-    # FIXME
+  def run(a, b) when is_integer(a) and is_integer(b) do
+    case {a, b} do
+      {nil, _} -> :error
+      {_, nil} -> :error
+      {a, b} -> a + b
+    end
   end
+
+  def run(_, _), do: :error
 end
 
 defmodule SomaTest do
